@@ -44,7 +44,7 @@ const HZZAppHeader = memo(() => {
             </div>
           </HeaderLeft>
           <HeaderRight>
-              <Input placeholder="音乐/视频/电台/用户" prefix={<SearchOutlined />}/>
+              <Input className="search" placeholder="音乐/视频/电台/用户" prefix={<SearchOutlined />}/>
           </HeaderRight>
         </div>
         <div className="divider"></div>
