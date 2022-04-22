@@ -1,6 +1,6 @@
 import React, { memo, Fragment } from 'react';
 
-import { footerLinks } from '@/common/local-data'
+import { footerLinks, footerImages } from '@/common/local-data'
 
 import {
   AppFooterWrapper,
@@ -12,13 +12,13 @@ const HZZAppFooter = memo(() => {
   return (
     <AppFooterWrapper>
       <div className='wrap-v2 content'>
-        <FooterLeft>
-          <div>
+        <FooterLeft className="left">
+          <div className="link">
             {
               footerLinks.map((item, index) => {
                 return (
-                  <Fragment>
-                    <a href={item.link} target="_blank">{item.title}</a>
+                  <Fragment key={item.title}>
+                    <a href={item.link} target="_blank" rel="noopener noreferrer">{item.title}</a>
                     <span className="line">|</span>
                   </Fragment>
                 )
@@ -46,8 +46,17 @@ const HZZAppFooter = memo(() => {
             </a>
           </div>
         </FooterLeft>
-        <FooterRight>
-
+        <FooterRight className="right">
+            {
+              footerImages.map((item,index) => {
+                return(
+                  <li className="item" key={item.link}>
+                    <a className="link" href={item.link} rel="noopener noreferrer" target="_blank"> </a>
+                    <span className="title">{item.title}</span>
+                  </li>
+                )
+              })
+            }
         </FooterRight>
       </div>
     </AppFooterWrapper>
