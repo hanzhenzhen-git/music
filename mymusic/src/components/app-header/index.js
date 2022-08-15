@@ -14,10 +14,11 @@ import {
 
 const HZZAppHeader = memo(() => {
   //业务代码
+  //headerLinks前3个是路由跳转，后3个是链接
   const showSelectItem = (item, index) => {
     if (index < 3) {
       return (
-        <NavLink to={item.link} exact>
+        <NavLink to={item.link}>
           {item.title}
           <i className="sprite_01 icon"></i>
         </NavLink>

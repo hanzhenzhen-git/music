@@ -101,6 +101,6 @@ export const HeaderRight = styled.div`
         border: 1px solid #666;
         border-radius: 16px;
         margin: 0 16px;
-        background-color: transparent;
+        background-color: transparent;//transparent就是设置rgb(0,0,0,0)，用来设置透明
     }
 `
