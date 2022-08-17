@@ -2,11 +2,11 @@ import React, { memo, useState, useEffect, useRef, useCallback } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 
 import { getSizeImage, formatDate, getPlaySong } from '@/utils/format-utils';
-import { 
+import {
   getSongDetailAction,
   changeSequenceAction,
   changeCurrentIndexAndSongAction,
-  changeCurrentLyricIndexAction 
+  changeCurrentLyricIndexAction
 } from '../store/actionCreators';
 
 import { message } from 'antd';
@@ -27,9 +27,9 @@ export default memo(function HZZAppPlayerBar() {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // // redux hook
-  const { 
-    currentSong, 
-    sequence, 
+  const {
+    currentSong,
+    sequence,
     lyricList,
     currentLyricIndex
   } = useSelector(state => ({
@@ -46,7 +46,7 @@ export default memo(function HZZAppPlayerBar() {
     dispatch(getSongDetailAction(411214279));
   }, [dispatch]);
 
-  useEffect(() =>  {
+  useEffect(() => {
     audioRef.current.src = getPlaySong(currentSong.id);
     audioRef.current.play().then(res => {
       setIsPlaying(true);
@@ -64,7 +64,7 @@ export default memo(function HZZAppPlayerBar() {
 
   // // handle function
   const playMusic = useCallback(() => {
-    isPlaying ? audioRef.current.pause(): audioRef.current.play();
+    isPlaying ? audioRef.current.pause() : audioRef.current.play();
     setIsPlaying(!isPlaying);
   }, [isPlaying]);
 
@@ -87,12 +87,14 @@ export default memo(function HZZAppPlayerBar() {
     if (currentLyricIndex !== i - 1) {
       dispatch(changeCurrentLyricIndexAction(i - 1));
       const content = lyricList[i - 1] && lyricList[i - 1].content
-      message.open({
-        key: "lyric",
-        content: content,
-        duration: 0,
-        className: "lyric-class"
-      })
+      if (content && content.length > 0) {
+        message.open({
+          key: "lyric",
+          content: content,
+          duration: 0,
+          className: "lyric-class"
+        })
+      }
     }
   }
 
@@ -140,11 +142,11 @@ export default memo(function HZZAppPlayerBar() {
       <div className="content wrap-v2">
         <Control isPlaying={isPlaying}>
           <button className="sprite_player prev"
-                  onClick={e => changeMusic(-1)}></button>
-          <button className="sprite_player play" 
-                  onClick={e => playMusic()}></button>
+            onClick={e => changeMusic(-1)}></button>
+          <button className="sprite_player play"
+            onClick={e => playMusic()}></button>
           <button className="sprite_player next"
-                  onClick={e => changeMusic(1)}></button>
+            onClick={e => changeMusic(1)}></button>
         </Control>
 
         <PlayInfo>
@@ -159,11 +161,11 @@ export default memo(function HZZAppPlayerBar() {
               <a href="#/" className="singer-name">{singerName}</a>
             </div>
             <div className="progress">
-              <Slider defaultValue={0} 
-                      value={progress}
-                      onChange={sliderChange}
-                      onAfterChange={sliderAfterChange}
-                      />
+              <Slider defaultValue={0}
+                value={progress}
+                onChange={sliderChange}
+                onAfterChange={sliderAfterChange}
+              />
               <div className="time">
                 <span className="now-time">{showCurrentTime}</span>
                 <span className="divider">/</span>
@@ -185,10 +187,10 @@ export default memo(function HZZAppPlayerBar() {
           </div>
         </Operator>
       </div>
-      <audio ref={audioRef} 
-             onTimeUpdate={e => timeUpdate(e)} 
-             onEnded={e => handleMusicEnded()}
-             />
+      <audio ref={audioRef}
+        onTimeUpdate={e => timeUpdate(e)}
+        onEnded={e => handleMusicEnded()}
+      />
     </PlaybarWrapper>
   )
 });

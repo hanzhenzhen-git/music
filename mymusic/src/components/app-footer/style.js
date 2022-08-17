@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const AppFooterWrapper = styled.div`
     color: #666;
     border-top: 1px solid #d3d3d3;
-
+    padding-bottom: 60px;
     .content {
     display: flex;
     justify-content: space-between;

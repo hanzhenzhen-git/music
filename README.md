@@ -8,3 +8,5 @@
   * 使用React作为前端框架，使用函数式组件进行组件化开发，Redux进行状态管理，react-router-dom中的HashRoute和react-router-config中的renderRoutes管理路由，Ant Design作为前端UI框架， Axios进行网络请求
 # 界面展示
 ![image](./display.jpg)
+# 歌曲播放逻辑梳理
+![image](./music.png)
